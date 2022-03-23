@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    move2kube.konveyor.io/service: ts-ticket-office-mongo
+  name: ts-ticket-office-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      move2kube.konveyor.io/service: ts-ticket-office-mongo
+  template:
+    metadata:
+      labels:
+        move2kube.konveyor.io/service: ts-ticket-office-mongo
+      name: ts-ticket-office-mongo
+    spec:
+      containers:
+        - name: ts-ticket-office-mongo
+          image: mongo
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+      restartPolicy: Always

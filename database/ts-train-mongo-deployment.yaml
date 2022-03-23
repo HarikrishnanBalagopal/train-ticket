@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    move2kube.konveyor.io/service: ts-train-mongo
+  name: ts-train-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      move2kube.konveyor.io/service: ts-train-mongo
+  template:
+    metadata:
+      labels:
+        move2kube.konveyor.io/service: ts-train-mongo
+      name: ts-train-mongo
+    spec:
+      containers:
+        - name: ts-train-mongo
+          image: mongo
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+      restartPolicy: Always

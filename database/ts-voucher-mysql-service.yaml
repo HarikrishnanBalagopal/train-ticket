@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    move2kube.konveyor.io/service: ts-voucher-mysql
+  name: ts-voucher-mysql
+spec:
+  type: ClusterIP
+  selector:
+    move2kube.konveyor.io/service: ts-voucher-mysql
+  ports:
+    - name: port-3306
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
